@@ -1,0 +1,5 @@
+<app-query-stats (selectedSuperQueryChange)="updateSelectedQuery($event)"
+                         [allSuperQueries]="this.allSuperQueries">
+  <!-- We could display the proper super query info based on the query type of SuperQuery. -->
+  <app-list-query-stats [selectedSuperQuery]="selectedSuperQuery"></app-list-query-stats>
+</app-query-stats>

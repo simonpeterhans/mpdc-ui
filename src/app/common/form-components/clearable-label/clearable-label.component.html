@@ -1,0 +1,9 @@
+<mat-form-field [formGroup]="fg" appearance="fill" fxFlex>
+  <mat-label>{{inputLabel}}</mat-label>
+  <input [formControlName]="fcName" matInput type="text">
+  <button (click)="resetInput()" *ngIf="isInputNotEmpty()" aria-label="Clear" mat-icon-button
+          matSuffix>
+    <mat-icon class="clearable-icon">close</mat-icon>
+  </button>
+  <mat-error *ngIf="errorMessage != null">{{errorMessage}}</mat-error>
+</mat-form-field>

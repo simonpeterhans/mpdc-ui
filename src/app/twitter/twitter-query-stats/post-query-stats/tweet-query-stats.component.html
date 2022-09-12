@@ -1,0 +1,46 @@
+<div *ngIf="selectedSuperQuery" class="checkbox">
+  <div>
+    <div>
+      <mat-form-field>
+        <mat-label>Referenced tweets depth</mat-label>
+        <input [disabled]="true" [value]="selectedSuperQuery.specificData.referencedTweetsDepth"
+               matInput type="number">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Query delay in minutes</mat-label>
+        <input [disabled]="true" [value]="selectedSuperQuery.specificData.queryDelayMinutes"
+               matInput
+               type="number">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-checkbox [checked]="selectedSuperQuery.specificData.useStreamingApiIfPossible"
+                    [disabled]="true" class="checkbox-group" fxFlex>
+        Use streaming API if possible
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <div *ngIf="getKeywords().length > 0" class="list-group">
+    <h4>Keywords</h4>
+    <div class="list-list">
+      <mat-chip-list>
+        <!-- TODO Consider disabling these (and maybe re-color the font above as well?). -->
+        <mat-chip *ngFor="let kw of getKeywords()" [disabled]="false">{{kw.keyword}}</mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
+
+  <div *ngIf="getAccounts().length > 0" class="list-group">
+    <h4>Accounts</h4>
+    <div class="list-list">
+      <mat-chip-list>
+        <!-- TODO Consider disabling these (and maybe re-color the font above as well?). -->
+        <mat-chip *ngFor="let acc of getAccounts()" [disabled]="false">{{acc.account}}</mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
+</div>
+

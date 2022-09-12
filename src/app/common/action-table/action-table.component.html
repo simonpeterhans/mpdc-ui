@@ -1,0 +1,22 @@
+<table [dataSource]="dataSource" mat-table>
+  <ng-container #column *ngFor="let column of getVisibleColumns()" [matColumnDef]="column.key">
+    <th *matHeaderCellDef mat-header-cell>{{column.label}}</th>
+    <td *matCellDef="let element"
+        mat-cell>{{element[column.key] | dynamic: column.pipe: column.pipeArgs}}</td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="BUTTON_COL_ID">
+    <th *matHeaderCellDef mat-header-cell>Actions</th><!-- No visible column label. -->
+    <td *matCellDef="let element" mat-cell>
+      <!-- Add all defined buttons for the element.-->
+      <ng-container *ngFor="let button of element.actions">
+        <button (click)="button.f(element)" mat-icon-button>
+          <mat-icon>{{button.icon}}</mat-icon>
+        </button>
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="getVisibleColumnDefs()" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: getVisibleColumnDefs();" mat-row></tr>
+</table>

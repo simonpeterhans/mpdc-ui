@@ -1,0 +1,9 @@
+<div *ngIf="selectedSuperQuery" class="checkbox">
+  <div>
+    <mat-form-field>
+      <mat-label>Referenced tweets depth</mat-label>
+      <input [disabled]="true" [value]="selectedSuperQuery.specificData.referencedTweetsDepth"
+             matInput type="number">
+    </mat-form-field>
+  </div>
+</div>

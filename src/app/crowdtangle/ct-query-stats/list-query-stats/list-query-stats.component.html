@@ -1,0 +1,26 @@
+<div *ngIf="selectedSuperQuery">
+  <div>
+    <mat-form-field>
+      <mat-label>Query delay in minutes</mat-label>
+      <input [disabled]="true" [value]="selectedSuperQuery.specificData.queryDelayMinutes" matInput
+             type="number">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-checkbox [checked]="selectedSuperQuery.specificData.includeHistory" [disabled]="true"
+                  class="checkbox-group" fxFlex>
+      Include metrics history
+    </mat-checkbox>
+  </div>
+
+  <div class="list-group">
+    Included lists (none = all available):
+    <div class="list-list">
+      <mat-chip-list>
+        <!-- TODO Consider disabling these (and maybe re-color the font above as well?). -->
+        <mat-chip *ngFor="let list of getLists()" [disabled]="false">{{list}}</mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
+</div>

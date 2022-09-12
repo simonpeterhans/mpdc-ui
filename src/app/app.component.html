@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <!--
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    -->
+    <div>
+      <a [routerLink]="'/overview'" mat-button routerLinkActive="mat-button-active">Overview</a>
+      <a [routerLink]="'/twitter'" mat-button routerLinkActive="mat-button-active">Twitter</a>
+      <a [routerLink]="'/crowdtangle'" mat-button
+         routerLinkActive="mat-button-active">CrowdTangle</a>
+      <a [routerLink]="'/reddit'" disabled mat-button>Reddit</a>
+    </div>
+    <h1 style="margin-left: auto">mpdc-ui</h1>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<!-- Progress bar for loading and a fake progress bar to block the space while we're not loading.-->
+<mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
+<mat-progress-bar *ngIf="!showProgressBar" mode="determinate" value="0"></mat-progress-bar>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,7 @@
+{
+  "collector": {
+    "host": "localhost:5678",
+    "tls": false,
+    "ping_interval": 10000
+  }
+}

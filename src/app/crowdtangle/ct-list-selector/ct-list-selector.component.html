@@ -1,0 +1,32 @@
+<ng-container [formGroup]="fg">
+  <mat-button-toggle-group [formControlName]="'listIds'" fxLayout="row wrap"
+                           fxLayoutAlign="start start" multiple>
+    <!-- Loading.-->
+    <ng-container *ngIf="lastUpdate.loading">
+      <mat-button-toggle class="button-toggle" disabled fxFlex>Loading lists for API key...
+      </mat-button-toggle>
+    </ng-container>
+    <!-- Not loading.-->
+    <ng-container *ngIf="!lastUpdate.loading">
+      <!-- Invalid key.-->
+      <ng-container *ngIf="!lastUpdate.validKey">
+        <mat-button-toggle class="button-toggle" disabled fxFlex>Please provide a valid API key.
+        </mat-button-toggle>
+      </ng-container>
+      <!-- Valid key.-->
+      <ng-container *ngIf="lastUpdate.validKey">
+        <!-- Found at least one list.-->
+        <ng-container *ngIf="lastUpdate.retrievedLists.length > 0">
+          <mat-button-toggle *ngFor="let option of lastUpdate.retrievedLists" [value]="option"
+                             class="button-toggle"
+                             fxFlex="100%">{{option.title}}</mat-button-toggle>
+        </ng-container>
+        <!-- Found no lists.-->
+        <ng-container *ngIf="lastUpdate.retrievedLists.length == 0">
+          <mat-button-toggle class="button-toggle" disabled fxFlex>No lists found.
+          </mat-button-toggle>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </mat-button-toggle-group>
+</ng-container>

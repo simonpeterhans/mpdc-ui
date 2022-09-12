@@ -1,0 +1,41 @@
+<div>
+  <h2>Super Query</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>Select Super Query</mat-label>
+    <mat-select (selectionChange)="updateSelectedQuery()" [(ngModel)]="selectedSuperQuery">
+      <mat-option *ngFor="let superQuery of allSuperQueries" [value]="superQuery">
+        {{superQuery.superId}} ({{superQuery.label}})
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-divider class="separator separator-margin-bottom"></mat-divider>
+
+  <div>
+    <ng-container *ngIf="selectedSuperQuery != undefined">
+      <b>Query Type:</b> {{getQueryTypeString(selectedSuperQuery.queryType)}}
+    </ng-container>
+  </div>
+</div>
+
+
+<div *ngIf="selectedSuperQuery">
+  <div>
+    <app-super-query-table
+      [superQueryList]="tableSuperQuery"></app-super-query-table>
+  </div>
+
+  <mat-divider class="separator separator-margin"></mat-divider>
+
+  <h4>Additional Parameters</h4>
+
+  <ng-content></ng-content>
+
+  <mat-divider class="separator separator-margin"></mat-divider>
+
+  <h4>Sub Queries</h4>
+  <div>
+    <app-sub-query-table
+      [subQueryList]="selectedSuperQuery.subQueries"></app-sub-query-table>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="platform-title">
+  <h2 style="display: inline; vertical-align: middle">Twitter Queries</h2>
+  <button (click)="refreshData()" mat-icon-button>
+    <mat-icon>refresh</mat-icon>
+  </button>
+</div>
+
+<mat-divider class="separator"></mat-divider>
+
+<div class="stats-container">
+  <h4>Tweet Queries</h4>
+  <div>
+    <app-super-query-table [superQueryList]="tweetQueries"></app-super-query-table>
+  </div>
+</div>
+
+<mat-divider class="separator"></mat-divider>
+
+<div class="stats-container">
+  <h4>Sample Queries</h4>
+  <div>
+    <app-super-query-table [superQueryList]="sampleQueries"></app-super-query-table>
+  </div>
+</div>

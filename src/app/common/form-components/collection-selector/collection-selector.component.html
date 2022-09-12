@@ -1,0 +1,14 @@
+<mat-form-field [formGroup]="fg" appearance="fill" fxFlex>
+  <mat-label>Collection</mat-label>
+  <input [formControlName]="'collection'" [matAutocomplete]="auto" matInput type="text">
+  <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
+    <mat-option *ngFor="let option of filteredCollections | async" [value]="option">
+      {{option}}
+    </mat-option>
+  </mat-autocomplete>
+  <button (click)="resetInput()" *ngIf="isInputNotEmpty()" aria-label="Clear" mat-icon-button
+          matSuffix>
+    <mat-icon class="clearable-icon">close</mat-icon>
+  </button>
+  <mat-error *ngIf="errorMessage != null">{{errorMessage}}</mat-error>
+</mat-form-field>

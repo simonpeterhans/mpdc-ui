@@ -1,0 +1,11 @@
+<app-query-stats (selectedSuperQueryChange)="updateSelectedQuery($event)"
+                         [allSuperQueries]="this.allSuperQueries">
+  <ng-container *ngIf="selectedSuperQuery !== undefined">
+    <app-tweet-query-stats *ngIf="selectedSuperQuery.queryType === allQueryTypes.TWITTER_TWEET"
+                           [selectedSuperQuery]="selectedSuperQuery"></app-tweet-query-stats>
+
+    <app-sample-query-stats
+      *ngIf="selectedSuperQuery.queryType === allQueryTypes.TWITTER_SAMPLE_STREAM"
+      [selectedSuperQuery]="selectedSuperQuery"></app-sample-query-stats>
+  </ng-container>
+</app-query-stats>

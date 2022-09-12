@@ -1,0 +1,91 @@
+// noinspection DuplicatedCode
+
+import {Injectable} from '@angular/core';
+import {
+  TwitterSampleSuperQueryInfo,
+  TwitterTweetSuperQueryInfo
+} from "../../../../openapi/collector";
+import {QueryType, SuperQuery} from "../../common/super-query-table/super-query.model";
+import {SubQuery} from "../../common/sub-query-table/sub-query.model";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ConvertTwitterQueryService {
+
+  constructor() {
+  }
+
+  convertTweetQueries(superQueries: TwitterTweetSuperQueryInfo[]): SuperQuery[] {
+    return superQueries.map(
+      resSuperQuery => {
+        let subQueries = resSuperQuery.subQueries.map(resSubQuery => {
+          return new SubQuery(
+            resSubQuery.id,
+            resSubQuery.queryData.interval.start!!,
+            resSubQuery.queryData.interval.end!!,
+            resSubQuery.temporalType,
+            resSubQuery.state.lastProcessingTimestamp,
+            resSubQuery.state.lastCheckpointTimestamp ? resSubQuery.state.lastCheckpointTimestamp : "-1",
+            resSubQuery.state.streamStatus,
+            resSubQuery.state.statusText,
+            resSubQuery.percentComplete,
+            resSubQuery.stats.numPosts,
+            resSubQuery.stats.numUniqueMediaObjects,
+            resSubQuery.stats.numRemainingMediaObjects
+          )
+        })
+
+        // Update super query.
+        return new SuperQuery(
+          resSuperQuery.id!!,
+          resSuperQuery.queryData.label,
+          resSuperQuery.queryData.interval.start!!,
+          resSuperQuery.queryData.interval.end!!,
+          resSuperQuery.fetchMultimedia.join(", "),
+          resSuperQuery.indexInCineast,
+          QueryType.TWITTER_TWEET,
+          resSuperQuery.tweetQueryData,
+          subQueries
+        )
+      }
+    )
+  }
+
+  convertSampleQueries(superQueries: TwitterSampleSuperQueryInfo[]): SuperQuery[] {
+    return superQueries.map(
+      resSuperQuery => {
+        let subQueries = resSuperQuery.subQueries.map(resSubQuery => {
+          return new SubQuery(
+            resSubQuery.id,
+            resSubQuery.queryData.interval.start!!,
+            resSubQuery.queryData.interval.end!!,
+            resSubQuery.temporalType,
+            resSubQuery.state.lastProcessingTimestamp,
+            resSubQuery.state.lastCheckpointTimestamp ? resSubQuery.state.lastCheckpointTimestamp : "-1",
+            resSubQuery.state.streamStatus,
+            resSubQuery.state.statusText,
+            resSubQuery.percentComplete,
+            resSubQuery.stats.numPosts,
+            resSubQuery.stats.numUniqueMediaObjects,
+            resSubQuery.stats.numRemainingMediaObjects
+          )
+        })
+
+        // Update super query.
+        return new SuperQuery(
+          resSuperQuery.id!!,
+          resSuperQuery.queryData.label,
+          resSuperQuery.queryData.interval.start!!,
+          resSuperQuery.queryData.interval.end!!,
+          resSuperQuery.fetchMultimedia.join(", "),
+          resSuperQuery.indexInCineast,
+          QueryType.TWITTER_SAMPLE_STREAM,
+          resSuperQuery.sampleQueryData,
+          subQueries
+        )
+      }
+    )
+  }
+
+}

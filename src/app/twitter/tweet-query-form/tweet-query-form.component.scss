@@ -1,0 +1,40 @@
+.row {
+  margin: 0;
+}
+
+.row:first-child {
+  margin: 0;
+}
+
+.col {
+  padding: 0 0 0 40px;
+}
+
+.col:first-child {
+  padding: 0;
+}
+
+.input {
+  margin-top: 10px;
+}
+
+.input:first-child {
+  margin-top: 0;
+}
+
+.checkbox-group {
+  margin-top: 10px;
+}
+
+.checkbox-group:first-child {
+  margin-top: 0;
+}
+
+.submit-button {
+  margin-top: 20px;
+}
+
+textarea {
+  // Magic number to stretch vertically down the first row.
+  height: 472px;
+}

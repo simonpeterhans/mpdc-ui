@@ -1,0 +1,94 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="twitterTweetForm">
+  <!--  First row.-->
+  <div class="row" fxLayout="row wrap" fxLayoutAlign="start start">
+    <div class="col" fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+      <!-- API key. -->
+      <app-twitter-api-key-input [fcName]="'apiKey'" [fg]="twitterTweetForm" class="input"
+                                 fxFlex></app-twitter-api-key-input>
+
+      <!-- Query label. -->
+      <app-clearable-label [errorMessage]="'Please provide a query label.'" [fcName]="'queryLabel'"
+                           [fg]="twitterTweetForm" class="input" fxFlex
+                           inputLabel="Query label"></app-clearable-label>
+
+      <!-- Collection selector. -->
+      <app-collection-selector [errorMessage]="'Please provide a collection name.'"
+                               [fg]="twitterTweetForm" class="input"
+                               fxFlex></app-collection-selector>
+
+      <!-- Date range selector. -->
+      <app-date-range [fg]="twitterTweetForm" class="input" fcNameFrom="from" fcNameTo="to"
+                      fxFlex></app-date-range>
+
+      <!-- Referenced tweets depth input. -->
+      <mat-form-field appearance="fill" class="input">
+        <mat-label>Referenced tweets depth</mat-label>
+        <input formControlName="referencedTweetsDepth" matInput max="20" min="0" type="number">
+      </mat-form-field>
+
+      <!-- Query delay in minutes input. -->
+      <mat-form-field appearance="fill" class="input">
+        <mat-label>Query delay in minutes</mat-label>
+        <input formControlName="queryDelayMinutes" matInput max="525600" min="0" type="number">
+      </mat-form-field>
+    </div>
+
+    <!-- Keyword/hashtag list (hashtags need to be prefixed with "#"). -->
+    <div class="col" fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+      <mat-form-field [formGroup]="twitterTweetForm" appearance="fill" fxFlex>
+        <mat-label>Keywords (1 phrase per line)</mat-label>
+        <textarea formControlName="keywords" matInput></textarea>
+      </mat-form-field>
+    </div>
+
+    <!-- Account list (will have "from:" prepended). -->
+    <div class="col" fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+      <mat-form-field [formGroup]="twitterTweetForm" appearance="fill" fxFlex>
+        <mat-label>Accounts (1 username or ID per line)</mat-label>
+        <textarea formControlName="accounts" matInput></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!--  Second row.-->
+  <div class="row" fxLayout="row wrap" fxLayoutAlign="start start">
+    <div class="col" fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+      <div class="checkbox-group" fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+        <!-- Multimedia download checkboxes. -->
+        Media:
+        <div fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+          <mat-checkbox formControlName="downloadImages" fxFlex>
+            Images
+          </mat-checkbox>
+          <mat-checkbox formControlName="downloadGifs" fxFlex>
+            Animated images (GIFs)
+          </mat-checkbox>
+          <mat-checkbox formControlName="downloadVideos" fxFlex>
+            Videos
+          </mat-checkbox>
+          <mat-checkbox formControlName="indexInCineast" fxFlex>
+            Index in vitrivr
+          </mat-checkbox>
+        </div>
+      </div>
+
+      <!-- Use streaming API for streams checkbox. -->
+      <div class="checkbox-group" fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+        Other options:
+        <mat-checkbox class="checkbox-group" formControlName="useStreamingApiIfPossible" fxFlex>
+          Use streaming API (stream queries only)
+        </mat-checkbox>
+      </div>
+    </div>
+    <div class="col" fxFlex></div>
+    <div class="col" fxFlex></div>
+  </div>
+
+  <!-- Third row (not flex).-->
+  <div>
+    <!-- Submit button. -->
+    <button [disabled]="loading" class="submit-button" color="primary" mat-raised-button
+            type="submit">Submit Query
+    </button>
+  </div>
+</form>

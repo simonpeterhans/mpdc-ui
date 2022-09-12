@@ -1,0 +1,15 @@
+.mat-button {
+  margin: 0 1px;
+}
+
+.mat-button-active {
+  background-color: darkblue;
+}
+
+.mat-button-disabled {
+  color: #8492ff !important;
+}
+
+.mat-button:hover:not(.mat-button-disabled) {
+  background-color: darkblue;
+}
