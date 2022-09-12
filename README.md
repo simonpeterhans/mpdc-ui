@@ -1,27 +1,30 @@
 # mpdc-ui
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.6.
+Front end of a multi-platform data collection system to collect social media data from various (academic) APIs, suitable for long-running/continuous queries that can be recovered upon interrupt.
 
-## Development server
+To be used with the back end at [mpdc-collector](https://github.com/simonpeterhans/mpdc-collector) that is responsible for the execution of data collection queries issued from this UI.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+**Note:** You still need API access keys to use this system! The setup is meant to be local on a per-research-group or per-researcher basis.
 
-## Code scaffolding
+##### APIs:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Twitter Academic v2 (tweet search/stream, 1% stream)
+- CrowdTangle Academic (account list search/stream)
 
-## Build
+##### Requirements:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Angular 13
 
-## Running unit tests
+##### Deploying the UI:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Run `npm install`.
+2. Adjust the config file at `src/config.json` if necessary.
+3. Run `ng serve` to deploy the UI.
 
-## Running end-to-end tests
+##### Notes:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- This is a prototype. Although it has successfully executed long-running queries and query recovery works fine, things might break.
+- Documentation is scarce, and some things are solved more elegantly than others.
+- If you want to make use of the vitrivr integration, make sure you check out the setup documentation of [Cineast](https://github.com/vitrivr/cineast), [vitrivr-ng](https://github.com/vitrivr/vitrivr-ng), and [Cottontail DB](https://github.com/vitrivr/cottontaildb).
+- The Cineast version to be used is currently on a [fork](https://github.com/simonpeterhans/cineast), with a pull request to the main repo coming soon.
+- Contributions are more than welcome!
